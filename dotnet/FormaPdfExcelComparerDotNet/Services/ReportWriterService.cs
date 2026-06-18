@@ -33,7 +33,15 @@ public sealed class ReportWriterService
             var result = comparisonResults[rowIndex];
             var excelRowNumber = rowIndex + 2;
 
-            worksheet.Cell(excelRowNumber, 1).Value = result.ExcelRow == 0 ? string.Empty : result.ExcelRow;
+            if (result.ExcelRow > 0)
+            {
+                worksheet.Cell(excelRowNumber, 1).Value = result.ExcelRow;
+            }
+            else
+            {
+                worksheet.Cell(excelRowNumber, 1).Value = string.Empty;
+            }
+
             worksheet.Cell(excelRowNumber, 2).Value = result.Evaluacion2Excel?.ToString() ?? string.Empty;
             worksheet.Cell(excelRowNumber, 3).Value = result.PdfFile;
             worksheet.Cell(excelRowNumber, 4).Value = result.EvaluadoPdf;
