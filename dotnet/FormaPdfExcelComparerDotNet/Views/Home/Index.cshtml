@@ -1,0 +1,45 @@
+@{
+    ViewData["Title"] = "Comparador PDF vs Excel";
+}
+
+<div class="container mt-4">
+    <h1>Comparador PDF vs Excel</h1>
+    <p>
+        Compara la columna <strong>Evaluacion 2</strong> del Excel contra el dato
+        <strong>Evaluado</strong> extraido de los PDFs.
+    </p>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            Modo local
+        </div>
+        <div class="card-body">
+            <form asp-controller="Compare" asp-action="Local" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label">Archivo Excel .xlsx</label>
+                    <input class="form-control" type="file" name="excelFile" accept=".xlsx" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">ZIP con PDFs</label>
+                    <input class="form-control" type="file" name="pdfZip" accept=".zip" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Columna del Excel</label>
+                    <input class="form-control" type="text" name="evaluationColumnName" value="Evaluacion 2" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Columna clave opcional para relacionar fila con PDF</label>
+                    <input class="form-control" type="text" name="documentKeyColumnName" placeholder="Ejemplo: Archivo, Codigo, Plano" />
+                    <div class="form-text">
+                        Si el Excel tiene una columna con el nombre del PDF o codigo del plano, escribela aqui.
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Comparar y descargar reporte</button>
+            </form>
+        </div>
+    </div>
+</div>
